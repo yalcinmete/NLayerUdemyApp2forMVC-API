@@ -84,9 +84,16 @@ namespace NLayer.Caching
         }
 
 
+
+        //Video55 MVC-API haberlesmesi.API 'yı kapatmıstık MVC ye göre GetProductsWithCategory()dönüs tipindeki CustomResponseDto dönmesin demiştik. İlk bunu eski haline cevirmekle baslıyoruz.Çünkü API' artık ayakta olucak.
+
         //MVC Video45.MVC projelerinde Success,Fail dönmemize gerek yok.CustomResponseDto dönmemize de gerek yok.
         //public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
-        public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+
+        //public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+
+        //Video55 MVC-API haberlesmesi.API 'yı kapatmıstık MVC ye göre GetProductsWithCategory()dönüs tipindeki CustomResponseDto dönmesin demiştik. İlk bunu eski haline cevirmekle baslıyoruz.Çünkü API' artık ayakta olucak.
+        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
             //Video43 sonları.GetProductsWithCategory metodu Productları categorylarle beraber çekme işlemi nadir olarak kullanılıyrosa cache yerine repo'dan çekebiliriz.
             //var producs = await _repository.GetProductsWithCategory();
@@ -95,7 +102,8 @@ namespace NLayer.Caching
             var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
-            return Task.FromResult(productsWithCategoryDto);
+            //return Task.FromResult(productsWithCategoryDto);
+            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
         }
 
         public async Task RemoveAsync(Product entity)
