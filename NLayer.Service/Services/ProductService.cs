@@ -23,16 +23,20 @@ namespace NLayer.Service.Services
         //public async Task<CustomResponseDto<List<ProductWithCategoryDto>>>'yu Task<List<ProductWithCategoryDto>> olarak güncelledik 
 
         //public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
-        public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
-        {
-            //Video33._productRepository.GetProductsWithCategory() List<Product> dönüüyor ama bize List<ProductWithCategoryDto> dönüş tipi lazım.Mapperla biz bunu rahatlıkla yapabiliriz ama bir tık ileriye taşıyalım olayı IProductService interfacesinde direkt Task<CustomResponseDto> dönelim zaten API controllerdeki actionlar da hep customResponseDto çevirme işlemi yapıyorduk. Bu işlemi controllerApı'da değil serviste yapmış olalım.
+
+        //Video55 MVC-API haberlesmesi. API 'yı kapatmıstık MVC ye göre GetProductsWithCategory()dönüs tipindeki CustomResponseDto dönmesin demiştik. İlk bunu eski haline cevirmekle baslıyoruz.Çünkü API' artık ayakta olucak. 
+        public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        { 
+
+        //Video33._productRepository.GetProductsWithCategory() List<Product> dönüüyor ama bize List<ProductWithCategoryDto> dönüş tipi lazım.Mapperla biz bunu rahatlıkla yapabiliriz ama bir tık ileriye taşıyalım olayı IProductService interfacesinde direkt Task<CustomResponseDto> dönelim zaten API controllerdeki actionlar da hep customResponseDto çevirme işlemi yapıyorduk. Bu işlemi controllerApı'da değil serviste yapmış olalım.
             var products = await _productRepository.GetProductsWithCategory();
 
             var productsDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
             //API'nın istemiş olduğu CustomResponseDto<List<ProductWithCategoryDto>> datayı dönmüş olduk.
             //return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsDto);
-            return productsDto;
+            //return productsDto;
+            return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsDto);
         }
     }
 }

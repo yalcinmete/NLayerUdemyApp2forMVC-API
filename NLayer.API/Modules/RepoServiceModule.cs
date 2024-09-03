@@ -49,7 +49,9 @@ namespace NLayer.API.Modules
             //InstancePerDependency   => transient 'e karşılık gelir
 
             //Video44.ProductService yerine artık cache'den okuma yaptırıyoruz.IProductService service gördüğün zaman ProductServiceNoCaching>() nesne örneğini al diyoruz.Öncesinde Service klasöründeki ProductService classının da isminin sonuna NoCaching ekledik ki yukarıdaki işlemler/kurallar esnasında IProductService için ProductService çalışmasın istedik.Aşağıdaki kodu da ekleyerek ProductService yerine ProductServiceNoCaching çalıştırmış olduk.
-            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
+
+            //Video55 MVC-API haberlesmesi. API ayakta olucak ve cache kullanmak istemediğimiz için artık ProductService cache'den okuma diyoruz burayı yorum satırına alıyoruz.
+            //builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
 
 

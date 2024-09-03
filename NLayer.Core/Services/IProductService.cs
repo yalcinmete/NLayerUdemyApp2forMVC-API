@@ -11,6 +11,9 @@ namespace NLayer.Core.Services
         //Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory();
 
         //MVC Video45.MVC projesinde CustomResponseDto ihtiyacımız yok.API'ya ekle ama.
-        Task<List<ProductWithCategoryDto>> GetProductsWithCategory();
+        //Task<List<ProductWithCategoryDto>> GetProductsWithCategory();
+
+       //Video55 MVC-API haberlesmesi.API 'yı kapatmıstık MVC ye göre GetProductsWithCategory()dönüs tipindeki CustomResponseDto dönmesin demiştik. İlk bunu eski haline cevirmekle baslıyoruz.Çünkü API' artık ayakta olucak.
+        Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory();
     }
 }

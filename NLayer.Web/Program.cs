@@ -6,6 +6,7 @@ using NLayer.Repository;
 using NLayer.Service.Mapping;
 using NLayer.Service.Validations;
 using NLayer.Web.Modules;
+using NLayer.Web.Services;
 using System.Reflection;
 
 namespace NLayer.Web
@@ -34,6 +35,17 @@ namespace NLayer.Web
                     option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
 
                 });
+            });
+
+            //Video56 MVC-API Haberleþmesi. BaseUrl'yi (BaseAPI adresini) appsettingten okuyoruz.
+            builder.Services.AddHttpClient<ProductApiService>(opt =>
+            {
+                opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+            });
+
+            builder.Services.AddHttpClient<CategoryApiService>(opt =>
+            {
+                opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
             });
 
             //MVC Video 53.Filterinin contstructorunda DI geçiyorsan program.cs'e bunu eklemelisin.

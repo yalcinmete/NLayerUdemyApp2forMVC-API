@@ -38,6 +38,8 @@ namespace NLayer.API.Controllers
             //CreateActionResult'ın istediği tipi(CustomResponseDto) serviste oluşturmuş olduk(productService).Burası daha yalın oldu. yani API'nın istediği dönüş tipini servislerde oluşturmak daha mantıklı.
             //return CreateActionResult(await productService.GetProductsWithCategory()); //Video35.productService yerine _service kullanıyoruz.
             return CreateActionResult(await _service.GetProductsWithCategory());
+
+            //Video55 MVC-API haberlesmesi. API 'yı kapatmıstık MVC ye göre GetProductsWithCategory()dönüs tipindeki CustomResponseDto dönmesin demiştik. İlk bunu eski haline cevirmekle baslıyoruz.Çünkü API' artık ayakta olucak. 
         }
 
         [HttpGet]
